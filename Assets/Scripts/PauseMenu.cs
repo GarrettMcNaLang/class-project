@@ -14,7 +14,10 @@ public class PauseMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+       
+        GameManager.Instance.UnPauseMusic();
         menu.SetActive(false);
+        
     }
 
     // Update is called once per frame
@@ -61,16 +64,27 @@ public class PauseMenu : MonoBehaviour
             if (isPaused)
             {
                 Time.timeScale = 0f;
+            //a class that refers to a specific gamescene variable
+            // GameManager.Instance.audio.pitch = 0f;
+            GameManager.Instance.PauseMusic();
             }
             else
             {
                 Time.timeScale = 1f;
+            //GameManager.Instance.audio.pitch = 1f;
+            GameManager.Instance.UnPauseMusic();
             }
         }
     public void LoadLevel(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
     }
+
+    public void PlaySound(AudioClip clip)
+    {
+        GameManager.Instance.audio.PlayOneShot(clip);
+    }
+
     }
 
    
